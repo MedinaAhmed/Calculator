@@ -1,20 +1,47 @@
 body{
     display: flex;
     justify-content: center;
+    background-image: url(https://previews.123rf.com/images/wektorygrafika/wektorygrafika1806/wektorygrafika180600006/103239820-falling-numbers-digits-beautiful-background-design-wallpaper.jpg?fj=1);
 }
 
 #container{
     background-color: black;
-    border: 10px solid black;
-    border-radius: 5px;
+    border: 3px solid black;
+    border-radius: 8px;
     display: grid;
     grid-template-columns: repeat(4, 150px);
+    grid-template-rows: repeat(5, 80px);
+    margin-top: 50px;
 }
 
 #display{
+    grid-column: 1/-1 ;
+    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-end;
     padding: 5px;
+}
+button{
+    font-size: 25px;
+    box-shadow:inset 0px 39px 0px -24px #e67a73;
+	background-color:#e4685d;
+	border-radius:4px;
+	border:1px solid #ffffff;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	padding:20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+}
+
+button:hover{
+    background-color:#eb675e;
+}
+
+.equals{
+    grid-column: span 2;
 }
