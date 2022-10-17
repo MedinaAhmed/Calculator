@@ -2,6 +2,19 @@ body{
     display: flex;
     justify-content: center;
 }
+
 #container{
+    background-color: black;
+    border: 10px solid black;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(4, 150px);
+}
+
+#display{
     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding: 5px;
 }
