@@ -1,4 +1,6 @@
 body{
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     background-image: url(https://previews.123rf.com/images/wektorygrafika/wektorygrafika1806/wektorygrafika180600006/103239820-falling-numbers-digits-beautiful-background-design-wallpaper.jpg?fj=1);
@@ -9,23 +11,35 @@ body{
     border: 3px solid black;
     border-radius: 8px;
     display: grid;
-    grid-template-columns: repeat(4, 150px);
-    grid-template-rows: repeat(5, 80px);
-    margin-top: 50px;
+    justify-content: center;
+    align-content: center;
+    min-height: 100%;
+    grid-template-columns: repeat(4, 110px);
+    grid-template-rows: minmax(120px,auto)repeat(5, 90px);
+    margin-top: 30px;
 }
 
 #display{
     grid-column: 1/-1 ;
-    background-color: white;
+    background-color: grey;
     display: flex;
-    flex-direction: column;
     justify-content: space-around;
     align-items: flex-end;
-    padding: 5px;
+    flex-direction: column;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.output .previous-operand{
+    color: rgba(255, 255, 255,.75);
+    font-size: 20px;
+}
+.output .current-operand{
+    color: rgb(255, 255, 255);
+    font-size: 32px;
 }
 button{
     font-size: 25px;
-    box-shadow:inset 0px 39px 0px -24px #e67a73;
 	background-color:#e4685d;
 	border-radius:4px;
 	border:1px solid #ffffff;
@@ -35,13 +49,16 @@ button{
 	font-family:Arial;
 	padding:20px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #b23e35;
+	text-shadow:0px 1px 0px #ce9e9a;
 }
 
 button:hover{
-    background-color:#eb675e;
+    background-color:#ce9e9a;
 }
 
+#zero{
+    grid-column: span 2;
+}
 .equals{
     grid-column: span 2;
 }
