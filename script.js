@@ -10,50 +10,52 @@ class Calculator {
     this.operation = undefined;
   }
   delete() {
-    this.currentOperand=this.currentOperand.toString().slice(0,-1);
+    this.currentOperand = this.currentOperand.toString().slice(0, -1);
   }
   appendNumber(number) {
-    if (number === "." && this.currentOperand.includes(".")) return
+    if (number === "." && this.currentOperand.includes(".")) return;
     this.currentOperand = this.currentOperand.toString() + number.toString();
   }
   chooseOperation(operation) {
-    if(this.currentOperand==='') return
-    if(this.previousOperand!==''){ 
-        this.calculate() // calculate if we wants several calculation ontime
+    if (this.currentOperand === "") return;
+    if (this.previousOperand !== "") {
+      this.calculate(); // calculate if we wants several calculation ontime
     }
     this.operation = operation;
     this.previousOperand = this.currentOperand;
-    this.currentOperand='';
+    this.currentOperand = "";
   }
   calculate() {
-    let computation;// our result of compute
-    const prev=parseFloat(this.previousOperand); // parses a string argument and returns a floating point number.
-    const current=parseFloat(this.currentOperand);
-    if(isNaN(prev)||isNaN(current)) return
-    switch(this.operation){
-        case '+':
-            computation= prev+current;
-            break;
-        case '-':
-            computation= prev-current;
-            break;
-        case'*':
-        computation=prev*current;
+    let computation; // our result of compute
+    const prev = parseFloat(this.previousOperand); // parses a string argument and returns a floating point number.
+    const current = parseFloat(this.currentOperand);
+    if (isNaN(prev) || isNaN(current)) return;
+    switch (this.operation) {
+      case "+":
+        computation = prev + current;
         break;
-        case'/':
-        computation=prev/current; 
+      case "-":
+        computation = prev - current;
         break;
-        default:
-            return;       
+      case "*":
+        computation = prev * current;
+        break;
+      case "/":
+        computation = prev / current;
+        break;
+      default:
+        return;
     }
-    this.currentOperand= computation;
-    this.operation=undefined;
-    this.previousOperand='';
+    this.currentOperand = computation;
+    this.operation = undefined;
+    this.previousOperand = "";
   }
   updateDisplay() {
     // update value of display
     this.currentOperandTextElement.innerText = this.currentOperand;
-    this.previousOperandTextElement.innerText= this.previousOperand;
+    if (this.operation != null) {
+      this.previousOperandTextElement.innerText = `${this.previousOperand}${this.operation}`;
+    }
   }
 }
 //getiing all from html
@@ -85,15 +87,15 @@ operationButtons.forEach((button) => {
     calculator.updateDisplay();
   });
 });
-equalButton.addEventListener('click', button=>{
-    calculator.calculate();
-    calculator.updateDisplay();
+equalButton.addEventListener("click", (button) => {
+  calculator.calculate();
+  calculator.updateDisplay();
 });
-allClearButton.addEventListener('click', button=>{
-    calculator.clear();
-    calculator.updateDisplay();
+allClearButton.addEventListener("click", (button) => {
+  calculator.clear();
+  calculator.updateDisplay();
 });
-deleteButton.addEventListener('click', button=>{
-    calculator.delete();
-    calculator.updateDisplay();
+deleteButton.addEventListener("click", (button) => {
+  calculator.delete();
+  calculator.updateDisplay();
 });
