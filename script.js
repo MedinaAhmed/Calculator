@@ -41,7 +41,12 @@ class Calculator {
         computation = prev * current;
         break;
       case "/":
-        computation = prev / current;
+        if(current!=0){
+            computation = prev / current;
+        }
+        else{
+            alert('Please dont divide by zero');
+        }
         break;
       default:
         return;
