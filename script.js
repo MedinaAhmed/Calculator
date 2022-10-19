@@ -53,10 +53,9 @@ class Calculator {
   updateDisplay() {
     // update value of display
     this.currentOperandTextElement.innerText = this.currentOperand;
-    if (this.operation != null) {
-      this.previousOperandTextElement.innerText = 
-      `${this.previousOperand}${this.operation}`;
-    }
+    
+      this.previousOperandTextElement.innerText = this.previousOperand;
+    
   }
 }
 //getiing all from html
@@ -91,6 +90,8 @@ operationButtons.forEach((button) => {
 equalButton.addEventListener("click", (button) => {
   calculator.calculate();
   calculator.updateDisplay();
+ 
+  
 });
 allClearButton.addEventListener("click", (button) => {
   calculator.clear();
