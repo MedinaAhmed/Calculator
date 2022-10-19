@@ -9,14 +9,18 @@ class Calculator {
     this.previousOperand = "";
     this.operation = undefined;
   }
-  delete() {}
+  delete() {
+    this.currentOperand=this.currentOperand.toString().slice(0,-1);
+  }
   appendNumber(number) {
     if (number === "." && this.currentOperand.includes(".")) return
     this.currentOperand = this.currentOperand.toString() + number.toString();
   }
   chooseOperation(operation) {
     if(this.currentOperand==='') return
-    if(this.previousOperand!==''){this.calculate()}
+    if(this.previousOperand!==''){ 
+        this.calculate() // calculate if we wants several calculation ontime
+    }
     this.operation = operation;
     this.previousOperand = this.currentOperand;
     this.currentOperand='';
@@ -87,5 +91,9 @@ equalButton.addEventListener('click', button=>{
 });
 allClearButton.addEventListener('click', button=>{
     calculator.clear();
+    calculator.updateDisplay();
+});
+deleteButton.addEventListener('click', button=>{
+    calculator.delete();
     calculator.updateDisplay();
 });
