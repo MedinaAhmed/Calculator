@@ -9,18 +9,47 @@ class Calculator {
     this.previousOperand = "";
     this.operation = undefined;
   }
-  delete() {
-
-  }
+  delete() {}
   appendNumber(number) {
-    
-     this.currentOperand=this.currentOperand.toString()+ number.toString()
-
+    if (number === "." && this.currentOperand.includes(".")) return
+    this.currentOperand = this.currentOperand.toString() + number.toString();
   }
-  chooseOperation(operation) {}
-  calculate() {}
-  updateDisplay() { // update value of display
+  chooseOperation(operation) {
+    if(this.currentOperand==='') return
+    if(this.previousOperand!==''){this.calculate()}
+    this.operation = operation;
+    this.previousOperand = this.currentOperand;
+    this.currentOperand='';
+  }
+  calculate() {
+    let computation;// our result of compute
+    const prev=parseFloat(this.previousOperand); // parses a string argument and returns a floating point number.
+    const current=parseFloat(this.currentOperand);
+    if(isNaN(prev)||isNaN(current)) return
+    switch(this.operation){
+        case '+':
+            computation= prev+current;
+            break;
+        case '-':
+            computation= prev-current;
+            break;
+        case'*':
+        computation=prev*current;
+        break;
+        case'/':
+        computation=prev/current; 
+        break;
+        default:
+            return;       
+    }
+    this.currentOperand= computation;
+    this.operation=undefined;
+    this.previousOperand='';
+  }
+  updateDisplay() {
+    // update value of display
     this.currentOperandTextElement.innerText = this.currentOperand;
+    this.previousOperandTextElement.innerText= this.previousOperand;
   }
 }
 //getiing all from html
@@ -45,4 +74,18 @@ numberButtons.forEach((button) => {
     calculator.appendNumber(button.innerText);
     calculator.updateDisplay();
   });
+});
+operationButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    calculator.chooseOperation(button.innerText);
+    calculator.updateDisplay();
+  });
+});
+equalButton.addEventListener('click', button=>{
+    calculator.calculate();
+    calculator.updateDisplay();
+});
+allClearButton.addEventListener('click', button=>{
+    calculator.clear();
+    calculator.updateDisplay();
 });
